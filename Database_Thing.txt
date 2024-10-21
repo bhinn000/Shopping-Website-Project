@@ -1,0 +1,16 @@
+﻿Database related :
+
+create table TableUserMaster(
+	UID int identity(1,1) primary key,
+	Fullname nvarchar(40),
+	Address nvarchar(30),
+	Email nvarchar(30),
+	Password nvarchar(20),
+);
+
+ALTER TABLE TableUserMaster
+ADD Gender nvarchar(10);
+
+select * from TableUserMaster;
+
+insert into TableUserMaster(Fullname , Address , Email , Password , Gender)  values(@Fullname , @Address , @Email , @Password , @Gender);

@@ -18,11 +18,11 @@
             margin-top: 50px;
         }
 
-        .panel-body h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+            .panel-body h2 {
+                text-align: center;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
 
         .form-group {
             margin-bottom: 15px;
@@ -41,26 +41,49 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="panel-body">
-                        <h2>Signup Panel</h2>
+                   
+
                         <div class="form-group">
-                            <label for="name">Name:</label>
-                            <asp:TextBox ID="txtName" CssClass="form-control" runat="server" placeholder="Enter your name"></asp:TextBox>
+                            <label for="name">Full name:</label>
+                            <asp:TextBox ID="txtName" CssClass="form-control" runat="server" placeholder="Enter your full name"></asp:TextBox>
                         </div>
+
+                        <div class="form-group">
+                            <label for="gender" >Gender:</label>
+                            <asp:DropDownList ID="dropdown" runat="server">
+                                <asp:ListItem Text="select" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Male" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Female" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Others" Value="3"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <asp:TextBox ID="txtAddress" CssClass="form-control" runat="server" placeholder="Enter your address"></asp:TextBox>
+                        </div>
+
                         <div class="form-group">
                             <label for="email">Email Id:</label>
                             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" placeholder="Enter your email"></asp:TextBox>
                         </div>
+
+                        <div class="form-group">
+                            <label for="userId">User Id:</label>
+                            <asp:TextBox ID="txtUserId" CssClass="form-control" runat="server" placeholder="Enter your userid"></asp:TextBox>
+                        </div>
+
                         <div class="form-group">
                             <label for="password">Password:</label>
                             <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password" placeholder="Enter your password"></asp:TextBox>
                         </div>
                         <div class="form-group row">
-                        <div class="col-md-2">
-                            <asp:Button ID="btnSignup" runat="server" CssClass="btn btn-primary w-100" Text="Sign Up" />
-                        </div>
-                        <div class="col-md-2">
-                            <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-danger w-100" Text="Cancel" />
-                        </div>
+                            <div class="col-md-2">
+                                <asp:Button ID="btnSignup" runat="server" CssClass="btn btn-primary w-100" Text="Sign Up" OnClick="btnSignup_Click" />
+                            </div>
+                            <div class="col-md-2">
+                                <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-danger w-100" Text="Cancel" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,3 +92,5 @@
     </form>
 </body>
 </html>
+
+
