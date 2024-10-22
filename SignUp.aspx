@@ -32,6 +32,14 @@
             width: 100%;
             margin-top: 10px;
         }
+
+        .login-heading {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -41,7 +49,10 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="panel-body">
-                   
+
+                        <div class="login-heading">
+                            <h2>SignUp Panel</h2>
+                        </div>
 
                         <div class="form-group">
                             <label for="name">Full name:</label>
@@ -49,7 +60,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="gender" >Gender:</label>
+                            <label for="gender">Gender:</label>
                             <asp:DropDownList ID="dropdown" runat="server">
                                 <asp:ListItem Text="select" Value="0"></asp:ListItem>
                                 <asp:ListItem Text="Male" Value="1"></asp:ListItem>
@@ -66,11 +77,6 @@
                         <div class="form-group">
                             <label for="email">Email Id:</label>
                             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" placeholder="Enter your email"></asp:TextBox>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="userId">User Id:</label>
-                            <asp:TextBox ID="txtUserId" CssClass="form-control" runat="server" placeholder="Enter your userid"></asp:TextBox>
                         </div>
 
                         <div class="form-group">
