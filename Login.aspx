@@ -58,9 +58,7 @@
                             </div>
                         </div>
                     </asp:Panel>
-                    <div class="text-center mt-3">
-                        <p>Don't have an account? <a href="SignUp.aspx">Sign Up</a></p>
-                    </div>
+                   
                 </div>s
             </div>
         </div>

@@ -37,8 +37,17 @@ namespace Shopping_Website_Project
                     if (reader.HasRows)
                     {
                         reader.Read(); 
-                        string fullname = reader["Fullname"].ToString(); 
-                        Response.Write("<script>alert('Login successful. Welcome, " + fullname + "!');</script>");
+                        string fullname = reader["Fullname"].ToString();
+                        //Response.Write("<script>alert('Login successful. Welcome, " +  fullname + "!');</script>");
+
+                        // Store the userID in session for future use
+                        int userID = Convert.ToInt32(reader["UID"]);
+                     
+                        Session["UserID"] = userID;
+                      
+                       
+
+                        Response.Redirect("Products.aspx");
                     }
                     else
                     {

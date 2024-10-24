@@ -14,3 +14,70 @@ ADD Gender nvarchar(10);
 select * from TableUserMaster;
 
 insert into TableUserMaster(Fullname , Address , Email , Password , Gender)  values(@Fullname , @Address , @Email , @Password , @Gender);
+
+create table AvailableProducts(
+	productID nvarchar(5) primary key,
+	productName nvarchar(20),
+	isAvailable BIT,
+);
+
+create table UserCart(
+	userID int not null,
+	productID NVARCHAR(5), 
+	productName nvarchar(20),
+	PRIMARY KEY (userID, productID),
+	constraint products_detail foreign key (productID) references
+	AvailableProducts(productID),
+	constraint user_detail foreign key (userID) references
+	TableUserMaster(UID),
+);
+
+select * from TableUserMaster;
+select * from AvailableProducts;
+ 
+INSERT INTO AvailableProducts (productID, productName,isAvailable)
+VALUES 
+('P001', 'Smartphone',  1), 
+('P002', 'Laptop',  1), 
+('P003', 'Tablet',  1), 
+('P004', 'Smartwatch',  1), 
+('P005', 'Bluetooth Speaker', 1),
+('P006', 'Radio' , 0);
+
+alter table AvailableProducts
+	drop column numbers;
+
+drop table AvailableProducts;
+
+
+select * from UserCart;
+
+INSERT INTO AvailableProducts	(productID, productName, isAvailable)
+VALUES 
+('P019', 'Toaster', 1),
+('P020', 'Blender', 1),
+('P021', 'Rice Cooker', 1),
+('P022', 'Slow Cooker', 1),
+('P023', 'Pressure Cooker', 1),
+('P024', 'Food Processor', 1),
+('P025', 'Electric Griddle', 1),
+('P026', 'Dishwasher', 1),
+('P027', 'Coffee Maker', 1),
+('P028', 'Induction Cooktop', 1),
+('P029', 'Electric Can Opener', 1),
+('P030', 'Stand Mixer', 1),
+('P031', 'Deep Fryer', 1),
+('P032', 'Ice Cream Maker', 1),
+('P033', 'Salad Spinner', 1);
+
+INSERT INTO AvailableProducts (productID, productName, isAvailable)
+VALUES 
+('P007', 'SAMSUNG J7', 1),           
+('P008', 'Refrigerator', 1),        
+('P009', 'Wireless Headphones', 1),  
+('P010', 'Smart TV', 1),             
+('P011', 'Gaming Console', 1),        
+('P012', 'Microwave Oven', 1),        
+('P013', 'Electric Kettle', 1),       
+('P014', 'Air Conditioner', 1),       
+('P015', 'Washing Machine', 1);   
