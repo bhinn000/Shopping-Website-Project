@@ -1,6 +1,10 @@
-Shopping Website Project made in C# .NET : 
-1 ) You see Home page where you can perform Login or Signup.
-2) You can create account from Signup and after that login. It doesnt allow to login without having account.
-3) You can view all of the products available , in order to add to cart , you need to click the button . 
-4) You can also check your cart.
-All of the database query also been pushed.
+Shopping Website Project made in C# .NET , SSMS  : 
+
+Home Page: Users can either log in or sign up to access the platform.
+User Authentication:
+  New users can create an account via the Sign Up page.
+  Login is only allowed for registered users.
+Product Browsing: Users can view all available products on the website.
+Add to Cart: Users can add products to their cart by clicking the "Add to Cart" button.
+Cart Management: Users can check their cart and view all the items they have added.
+Database Integration: All user actions and product details are stored in the database with proper query execution.
