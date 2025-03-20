@@ -1,0 +1,2 @@
+﻿We can perform : 
+Signup , Login , Add to Cart (remove the product if someone has added to the cart)

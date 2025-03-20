@@ -14,34 +14,69 @@ namespace Shopping_Website_Project
             {
                 // Load available products into GridView
                 LoadProducts();
+                LoadUserIdentity();
             }
         }
 
-        //private void LoadProducts()
-        //{
-        //    // Code to bind available products to the GridView (for example, from the database).
-        //    // Example: Use SqlDataSource or manually fetch data and bind it to GridView1.DataSource
+        private void LoadUserIdentity()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ShoppingDatabase"].ConnectionString;
+            if(connectionString == null)
+            {
+                throw new Exception("Connection String not found . Please check Web.Config");
+            }
+            //string query = "Select fullName from TableUserMaster where UID = @userID";
+            string query = "Select fullName from SignedInUser where ID = @userID";
 
-        //}
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            Console.WriteLine(reader.GetString(0));
+                            //while (reader.Read())
+                            //{
+                            //    // Get the 'fullName' column value
+                            //    string fullName = reader["fullName"].ToString();
+
+                            //    // Display the greeting
+                            //    Console.WriteLine($"Hello, {fullName}");
+                            //}
+                        }
+
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    
+                }
+            }
+
+        }
 
         private void LoadProducts()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ShoppingDatabase"].ConnectionString;
+
             if (connectionString == null)
             {
                 throw new Exception("Connection string not found. Please check Web.config.");
             }
 
-            string query = "SELECT productID, productName, isAvailable FROM AvailableProducts";
+            string query = "SELECT productID, productName FROM AvailableProducts where isAvailable = 1";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     try
-                    {
-     
+                    {     
                         con.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
 
@@ -67,14 +102,19 @@ namespace Shopping_Website_Project
                 string productName = GridView1.Rows[rowIndex].Cells[1].Text;
                 int userID = GetCurrentUserID();
 
-                if (IsProductAvailable(productID))
+                int a= GetCurrentUserID();
+                if(a != 0)
                 {
-                    AddProductToCart(userID, productID, productName);
+                    if (IsProductAvailable(productID))
+                    {
+                        AddProductToCart(userID, productID, productName);
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('The product is not available.');</script>");
+                    }
                 }
-                else
-                {
-                    Response.Write("<script>alert('The product is not available.');</script>");
-                }
+                
             }
         }
 
@@ -113,14 +153,14 @@ namespace Shopping_Website_Project
 
         private int GetCurrentUserID()
         {
- 
             if (Session["UserID"] != null)
             {
                 return Convert.ToInt32(Session["UserID"]);
             }
             else
             {
-                throw new Exception("User is not logged in.");
+                Response.Write("<script>alert('User is not logged in.');</script>");
+                return 0;
             }
         }
 
@@ -143,7 +183,6 @@ namespace Shopping_Website_Project
                     cmd.Parameters.AddWithValue("@productID", productID);
                     cmd.Parameters.AddWithValue("@productName", productName);
            
-
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();

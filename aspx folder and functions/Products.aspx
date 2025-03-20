@@ -14,7 +14,6 @@
                 <Columns>
                     <asp:BoundField DataField="productID" HeaderText="Product ID" />
                     <asp:BoundField DataField="productName" HeaderText="Product Name" />
-                    <asp:BoundField DataField="isAvailable" HeaderText="Is Available" DataFormatString="{0:Yes;0:No}" />
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" CommandName="AddToCart" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-primary" />
